@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New Image', new_image_path %>
+
+<%@user.images.each do |i|%>
+	<div>
+		<strong>File:</strong>
+		<%= image_tag i.file, :height => '320', :width => '320'%>
+	</div>
+<%end%>
+
+<!-- <%= link_to 'Edit', edit_user_path(@user) %> | -->
+<%= link_to 'Back', users_path %>
