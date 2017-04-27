@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'autoprefixer-rails'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave'
