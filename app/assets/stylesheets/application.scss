@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@mixin authenticate_section{
+	display: inline-block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 100px;
+		text-align: left;
+}
+body{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	#sign_up{		
+		@include authenticate_section;
+	}
+	#sign_in{
+		@include authenticate_section;
+	}
+	.navbar{
+		background: #1d2152;
+		border: none;
+	}
+}

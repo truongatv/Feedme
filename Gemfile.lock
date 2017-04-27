@@ -39,9 +39,14 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (6.7.0)
+      execjs
     bcrypt (3.1.11)
     bcrypt (3.1.11-x86-mingw32)
     bindex (0.5.0)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (1.0.0)
@@ -75,14 +80,13 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile (0.6.2)
     minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (2.0.0)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
-    nokogiri (1.6.6.4-x86-mingw32)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.7.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.1-x86-mingw32)
+      mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     puma (3.8.2)
     rack (2.0.1)
@@ -158,6 +162,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.3.6)
   byebug
   carrierwave
   devise
