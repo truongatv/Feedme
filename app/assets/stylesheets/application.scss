@@ -169,3 +169,22 @@ footer ul li {
   float: left;
   margin-left: 15px;
 }
+
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+  background: #000;
+}
+
+select#image_created_at_1i, select#image_created_at_2i, select#image_created_at_3i, select#image_created_at_4i, select#image_created_at_5i {
+  background: #000;
+  width: 10%;
+}
