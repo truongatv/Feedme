@@ -1,4 +1,7 @@
 <div class="center">
+  <% if user_signed_in? %>
+  ...
+  <% else %>
   <h1>Welcome to Feedme Community</h1>
 
   <h2>
@@ -6,4 +9,5 @@
   </h2>
 
   <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>

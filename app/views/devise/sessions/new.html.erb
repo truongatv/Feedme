@@ -1,3 +1,6 @@
+<% if user_signed_in? %>
+redirect_to root_path;
+<% else %>
 <% provide(:title, 'Log in') %>
 <div id = sign_in>
 <h2>Log in</h2>
@@ -27,3 +30,4 @@
 
 <%= render "devise/shared/links" %>
 </div>
+<% end %>
