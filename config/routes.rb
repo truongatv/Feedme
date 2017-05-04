@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :image_comments
+  get 'static_pages/home'
+
   resources :images
   root 'static_pages#home'
   

@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
   </head>
-
   <body>
-    <% if user_signed_in? %>
-    <h3>Hello, <%= current_user.email %></h3>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-    <h3>Please login
-      <%= link_to "here", new_user_session_path %>
-    </h3>
-      <h3>Or create one
-        <%= link_to "here", new_user_registration_path %>
-      </h3>
-    <% end %>
-    <%= yield%>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
