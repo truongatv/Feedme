@@ -45,7 +45,8 @@ class ImageCommentsController < ApplicationController
   def update
     respond_to do |format|
       if @image_comment.update(image_comment_params)
-        format.html { redirect_to @image_comment, notice: 'Image comment was successfully updated.' }
+        url = "/images/" + @image_comment.image_id.to_s
+        format.html { redirect_to url, notice: 'Image comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @image_comment }
       else
         format.html { render :edit }
@@ -58,8 +59,9 @@ class ImageCommentsController < ApplicationController
   # DELETE /image_comments/1.json
   def destroy
     @image_comment.destroy
+    url = "/images/" + @image_comment.image_id.to_s
     respond_to do |format|
-      format.html { redirect_to image_comments_url, notice: 'Image comment was successfully destroyed.' }
+      format.html { redirect_to url, notice: 'Image comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
