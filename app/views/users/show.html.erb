@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= @user.avatar.inspect%><p>
+<%= image_tag @user.avatar, :height => '200', :width => '200'%>
+
 <%= link_to 'New Image', new_image_path %>
 
 <%@user.images.each do |i|%>
