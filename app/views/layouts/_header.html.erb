@@ -4,6 +4,9 @@
   <% end %>
       <div class="container">
         <%= link_to "Feed me", root_path, id: "logo" %>
+        <%= form_tag users_path, method: "get" do %>
+            <%= text_field_tag :search, params[:search], class: "search-box" ,placeholder: "Search" %>
+          <% end %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>

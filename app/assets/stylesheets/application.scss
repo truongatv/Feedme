@@ -185,3 +185,22 @@ select#image_created_at_1i, select#image_created_at_2i, select#image_created_at_
   background: #000;
   width: 10%;
 }
+
+form{
+  display: inline-block;
+  margin-top: 10px;
+  .search-box{
+    background-color: white;
+    border-radius: 3px;
+    padding: 5px 5px;
+    width: 200px;
+    margin-bottom: 0;
+    vertical-align: center;
+    color: black;
+  }
+}
+
+nav{
+  display: inline-block;
+  float: right;
+}
