@@ -1,8 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<<<<<<< HEAD
 
 <p><%= @user.email%><p>
 <%= image_tag @user.avatar, :height => '200', :width => '200'%>
+=======
+<div class="container">
+	<div class="row">
+		<div class="user-info">
+			<%= image_tag @user.avatar, class: "avatar" %>
+			<%= link_to 'Edit', edit_user_path %>
+			<!--<%= link_to 'Back', users_path %>-->
+		</div>
+	</div>
+</div>
+>>>>>>> cc19b6a175c3abc99e9abafb536726277236bbd3
 
 <%@user.images.each do |i|%>
 	<div>
@@ -12,7 +24,10 @@
 		<p> Date<%= i.created_at%></p>
 	</div>
 <%end%>
+<<<<<<< HEAD
 <p style="margin-top: 10px"> <%= link_to 'New Image', new_image_path %></p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> 
 <%= link_to 'Back', users_path %>
+=======
+>>>>>>> cc19b6a175c3abc99e9abafb536726277236bbd3

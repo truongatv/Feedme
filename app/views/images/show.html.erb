@@ -10,14 +10,13 @@
   <%= @image.title %>
 </p>
 
-<p>
-  <strong>File:</strong>
-  <%=image_tag @image.file ,:height => '320', :width => '320'%>
+<p class="post">
+  <%= image_tag(@image.file.url) %>
 </p>
 
 <p>
   <strong>Created at:</strong>
-  <%= @image.created_at %>
+  <%= time_ago_in_words(@image.created_at) %> ago
 </p>
 
 <% if current_user.id == @image.user_id %>
@@ -29,6 +28,7 @@
 <ul>
 <% @image.image_comment.each do |image_comment|%>
   <li><%= image_comment.comment %>(<i><%= image_comment.user_id %></i>)
+<% if current_user.id == @image_comment.user_id %>
    <%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
    <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 <% end %>
