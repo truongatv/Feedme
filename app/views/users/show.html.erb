@@ -1,33 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<<<<<<< HEAD
-
-<p><%= @user.email%><p>
-<%= image_tag @user.avatar, :height => '200', :width => '200'%>
-=======
 <div class="container">
 	<div class="row">
 		<div class="user-info">
-			<%= image_tag @user.avatar, class: "avatar" %>
+			<%= image_tag @user.avatar, :height => '200', :width => '200' %>
 			<%= link_to 'Edit', edit_user_path %>
-			<!--<%= link_to 'Back', users_path %>-->
 		</div>
 	</div>
 </div>
->>>>>>> cc19b6a175c3abc99e9abafb536726277236bbd3
+<div class="col-sm-3 col-md-3 sidebar custom-border">
+          <ul class="nav nav-sidebar">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Change email</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+</div>
 
-<%@user.images.each do |i|%>
-	<div>
-		<strong>File:</strong>
-		<p> Title <%= i.title %></p>
-		<%= image_tag i.file, :height => '320', :width => '320'%>
-		<p> Date<%= i.created_at%></p>
-	</div>
-<%end%>
-<<<<<<< HEAD
-<p style="margin-top: 10px"> <%= link_to 'New Image', new_image_path %></p>
+<div class="col-xs-12 col-sm-9">
 
-<%= link_to 'Edit', edit_user_path(@user) %> 
-<%= link_to 'Back', users_path %>
-=======
->>>>>>> cc19b6a175c3abc99e9abafb536726277236bbd3
+<div style="margin-bottom: 100px;">
+<p style="margin-top: 10px"><button class="btn btn-default"><i class="fa fa-upload"></i> <%= link_to 'New Image', new_image_path %></button></p>
+
+<button><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <%= link_to 'Edit', edit_user_path(@user) %></button>
+<button><i class="fa fa-arrow-left" aria-hidden="true"></i> <%= link_to 'Back', users_path %></button>
+</div>
+

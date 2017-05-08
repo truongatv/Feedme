@@ -28,9 +28,10 @@
 <ul>
 <% @image.image_comment.each do |image_comment|%>
   <li><%= image_comment.comment %>(<i><%= image_comment.user_id %></i>)
-<% if current_user.id == @image_comment.user_id %>
+<% if current_user.id == image_comment.user_id %>
    <%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
    <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
 <% end %>
 </ul>
 

@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @mixin authenticate_section{
 	display: inline-block;
 		margin-left: auto;
@@ -33,32 +34,7 @@ html{
     vertical-align: baseline;
 }
 
-a:hover, .navbar-inverse .navbar-nav > li > a, p, body {
-	color: #fbfbfb !important;;
-}
-
-a, a:visited {
-  color: #e6f0ff !important;
-}
-
-.footer, a#logo, .navbar.navbar-fixed-top.navbar-inverse, .navbar.navbar-fixed-bottom.navbar-inverse {
-  background-color: transparent;
-}
-
 body{
-	background: url(https://i.imgur.com/nGS49mC.jpg) no-repeat center center fixed;
-	background-repeat: no-repeat !important;
-	background-attachment: fixed !important;
-	background-position: center !important;
-	
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-color: grey;
-	
-	background-size: cover;
-	background-blend-mode: multiply;
-	
 	display: inline-block;
 	text-align: center;
 	width: 100%;
@@ -143,7 +119,9 @@ p {
   text-decoration: none;
 }
 
-
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
 
 /* footer */
 
@@ -151,10 +129,11 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
+  color: #fff;
 }
 
-footer small {
-  float: left;
+footer a, footer a:hover, footer a:visited {
+  color: #fff;
 }
 
 footer ul {
