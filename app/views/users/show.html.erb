@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<div class="col-sm-3 col-md-3 sidebar custom-border">
+          <ul class="nav nav-sidebar">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Change email</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+</div>
 
+<div class="col-xs-12 col-sm-9">
+
+<div style="margin-bottom: 100px;">
 <p><%= @user.email%><p>
 <%= image_tag @user.avatar, :height => '200', :width => '200'%>
 
@@ -12,7 +22,8 @@
 		<p> Date<%= i.created_at%></p>
 	</div>
 <%end%>
-<p style="margin-top: 10px"> <%= link_to 'New Image', new_image_path %></p>
+<p style="margin-top: 10px"><button class="btn btn-default"><i class="fa fa-upload"></i> <%= link_to 'New Image', new_image_path %></button></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> 
-<%= link_to 'Back', users_path %>
+<button><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <%= link_to 'Edit', edit_user_path(@user) %></button>
+<button><i class="fa fa-arrow-left" aria-hidden="true"></i> <%= link_to 'Back', users_path %></button>
+</div>
