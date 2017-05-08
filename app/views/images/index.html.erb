@@ -22,6 +22,8 @@
         <td><%= image.created_at %></td>
         <td><%= link_to 'Show', image %></td>
         <% if current_user.id == image.user_id %>
+        <td><%= image_tag(image.file.url, height: "300", width: "300") %></td>
+        <td><%= time_ago_in_words(image.created_at) %> ago</td>
         <td><%= link_to 'Edit', edit_image_path(image) %></td>
         <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end%>
