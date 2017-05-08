@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'will_paginate'
 gem 'font-awesome-rails'
 gem 'autoprefixer-rails'
 gem 'devise'
