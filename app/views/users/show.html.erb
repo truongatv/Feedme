@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= @user.avatar.inspect%><p>
-<%= image_tag @user.avatar, :height => '200', :width => '200'%>
-
-<%= link_to 'New Image', new_image_path %>
+<div class="container">
+	<div class="row">
+		<div class="user-info">
+			<%= image_tag @user.avatar, class: "avatar" %>
+			<%= link_to 'Edit', edit_user_path %>
+			<!--<%= link_to 'Back', users_path %>-->
+		</div>
+	</div>
+</div>
 
 <%@user.images.each do |i|%>
 	<div>
@@ -11,6 +16,3 @@
 		<%= image_tag i.file, :height => '320', :width => '320'%>
 	</div>
 <%end%>
-
-<!-- <%= link_to 'Edit', edit_user_path(@user) %> | -->
-<%= link_to 'Back', users_path %>

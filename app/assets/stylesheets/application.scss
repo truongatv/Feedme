@@ -204,3 +204,25 @@ nav{
   display: inline-block;
   float: right;
 }
+
+.post{
+  img{
+    width: 350px;
+    height: 350px;
+  }
+}
+
+header.navbar.navbar-fixed-top.navbar-inverse{
+  background-color: #1d2152;
+  display: block;
+}
+
+footer.navbar.navbar-fixed-bottom.navbar-inverse{
+  width: 100%;
+  margin: 0 0;
+  background-color: #1d2152;
+}
+
+div.container.main-content{
+  padding-bottom: 45px;
+}
