@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+<<<<<<< HEAD
+<div class="container">
 	<div class="row">
 		<%= render 'follow_form' if user_signed_in? %>
 		<div class="user-info">
 			<section class="stats">
         <%= render 'shared/stats' %>
       </section>
+			<div class="avatar">
+			<%= image_tag @user.avatar, :height => '100', :width => '100', class: "avatar"%>
+			</div>
+			<% if current_user == @user%>
+			<%= link_to 'Edit User', edit_user_path %>
+			<%end%>
+			<!--<%= link_to 'Back', users_path %>-->
 		</div>
 	</div>
+=======
 <div class="col-sm-3 col-md-3 sidebar custom-border">
           <ul class="nav nav-sidebar">
               <%= image_tag @user.avatar, :height => '50', :width => '50' %><br>

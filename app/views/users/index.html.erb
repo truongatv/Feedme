@@ -13,6 +13,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to 'Show', user %></td>
+        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>
