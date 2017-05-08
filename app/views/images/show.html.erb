@@ -12,7 +12,7 @@
 
 <p>
   <strong>File:</strong>
-  <%= @image.file %>
+  <%=image_tag @image.file ,:height => '320', :width => '320'%>
 </p>
 
 <p>
@@ -20,11 +20,20 @@
   <%= @image.created_at %>
 </p>
 
+<% if current_user.id == @image.user_id %>
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', @user %>
+<% end %>
+<h2>CommentList</h2>
 
+<ul>
+<% @image.image_comment.each do |image_comment|%>
+  <li><%= image_comment.comment %>(<i><%= image_comment.user_id %></i>)
+   <%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
+   <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+</ul>
 
-<h2>Comment</h2>
 <%=form_for(@image_comment) do |f| %>
 <div class="field">
 	<%= f.label :comment %><br>
@@ -35,10 +44,3 @@
 	<%= f.submit %>
 	</div>
 <% end %>
-<h2>CommentList</h2>
-
-<ul>
-<% @image.image_comment.each do |image_comment|%>
-  <li><%= image_comment.comment %>(<i><%= image_comment.user_id %></i>) <%= link_to 'Edit', edit_image_comment_path(image_comment) %> <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-<% end %>
-</ul>

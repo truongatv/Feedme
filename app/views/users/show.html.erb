@@ -1,16 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= @user.avatar.inspect%><p>
-<%= image_tag @user.avatar, :height => '200', :width => '200'%>
 
-<%= link_to 'New Image', new_image_path %>
+<p><%= @user.email%><p>
+<%= image_tag @user.avatar, :height => '200', :width => '200'%>
 
 <%@user.images.each do |i|%>
 	<div>
 		<strong>File:</strong>
+		<p> Title <%= i.title %></p>
 		<%= image_tag i.file, :height => '320', :width => '320'%>
+		<p> Date<%= i.created_at%></p>
 	</div>
 <%end%>
+<p style="margin-top: 10px"> <%= link_to 'New Image', new_image_path %></p>
 
-<!-- <%= link_to 'Edit', edit_user_path(@user) %> | -->
+<%= link_to 'Edit', edit_user_path(@user) %> 
 <%= link_to 'Back', users_path %>
