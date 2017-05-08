@@ -23,6 +23,7 @@
 <p><%= @user.email%><p>
 <%= image_tag @user.avatar, :height => '200', :width => '200'%>
 
+
 <%@user.images.each do |i|%>
 	<div>
 		<strong>File:</strong>
@@ -36,4 +37,5 @@
 <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <%= link_to 'Edit', edit_user_path(@user) %></button>
 <button><i class="fa fa-arrow-left" aria-hidden="true"></i> <%= link_to 'Back', users_path %></button>
 </div>
+
 

@@ -40,6 +40,15 @@
 <% end %>
 </ul>
 
+<h2>CommentList</h2>
+
+<ul>
+<% @image.image_comment.each do |image_comment|%>
+  <li><%= image_comment.comment %>(<i><%= image_comment.user_id %></i>) <%= link_to 'Edit', edit_image_comment_path(image_comment) %> <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+</ul>
+
+
 <%=form_for(@image_comment) do |f| %>
 <div class="field">
 	<%= f.label :comment %><br>
