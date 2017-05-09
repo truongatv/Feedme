@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>User:</strong>
+  <%= @image.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @image.title %>
+</p>
+
+<p class="post">
+  <%= image_tag(@image.file.url) %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= time_ago_in_words(@image.created_at) %> ago
+</p>
+
+<% if current_user.id == @image.user_id %>
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', @user %>
+<% end %>
+
+<h2>CommentList</h2>
+
+<ul>
+<% @image.image_comment.each do |image_comment|%>
+  <li><%= image_comment.comment %>(<i><%= image_comment.user.email %></i>)
+<% if current_user.id == image_comment.user_id %>
+   <%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
+   <%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+<% end %>
+</ul>
+
+<div id="image-like-<%= @image.id %>">
+  <%= render "likes/like_form", image: @image %>
+</div>
+
+<%=form_for(@image_comment) do |f| %>
+<div class="field">
+	<%= f.label :comment %><br>
+	<%= f.text_field :comment %>
+	<%= f.hidden_field :image_id, :value => @image.id %>
+</div>
+	<div class="actions">
+	<%= f.submit %>
+	</div>
+<% end %>

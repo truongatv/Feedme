@@ -1,0 +1,5 @@
+<% if (like = current_user.liked?(image)) %>
+	<%= render "likes/unlike", image: image, like: like %>
+<% else %>
+	<%= render "likes/like", image: image %>
+<% end %>

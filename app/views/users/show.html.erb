@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+	<div class="row">
+        <div class="col-sm-3 col-md-4 sidebar">
+            <%= render 'follow_form' if user_signed_in? %>
+		<div class="user-info">
+ 			<% if user_signed_in? %>
+				<%= image_tag @user.avatar, :height => '50', :width => '50' %><br>
+        		<%= link_to 'Edit avatar', edit_user_path %>
+      		<%end%>
+      		<ul class="nav nav-sidebar">
+             <li><a href="#">Profile</a></li>
+             <li><a href="#">Change email</a></li>
+             <li><a href="#">Logout</a></li>
+			</ul>
+			<section class="stats">
+        	<%= render 'shared/stats' %>
+        	</section>
+		</div>
+		</div>
+	</div>
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<div style="margin-bottom: 100px;">
+<p style="margin-top: 10px"><button class="btn btn-default"><i class="fa fa-upload"></i> <%= link_to 'New Image', new_image_path %></button></p>
+
+<button><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <%= link_to 'Edit', edit_user_path(@user) %></button>
+<button><i class="fa fa-arrow-left" aria-hidden="true"></i> <%= link_to 'Back', users_path %></button>
+</div>
