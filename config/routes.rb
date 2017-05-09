@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :image_comments
   get 'static_pages/home'
 
-  resources :images
+  resources :images do
+    resources :likes
+  end
   root 'static_pages#home'
   
 

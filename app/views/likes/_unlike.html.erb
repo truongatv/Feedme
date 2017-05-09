@@ -1,0 +1,4 @@
+<%= form_for [image, like], remote: true, method: :delete do |f| %>
+<p><%= image.likes.size %></p>
+  <%= f.submit "UnLike" %>
+<% end %>

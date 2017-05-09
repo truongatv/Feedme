@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 	mount_uploader :avatar, ImageUploader
   has_many :images
+  has_many :likes
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
                                    dependent:   :destroy
@@ -32,4 +33,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  def liked? image
+    likes.find_by image_id: image.id
+  end
 end
