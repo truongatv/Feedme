@@ -2,7 +2,9 @@
 <div class="post">
 	<div class="post-info">	
 		<div class="avatar">
+      <% if @image.user.avatar.url != nil %>
 			<%= image_tag(@image.user.avatar.url) %>
+      <% end %>
 		</div>
 		<div class="user-email">
 			<%= @image.user.email %>
@@ -24,13 +26,18 @@
 			<% @image.image_comment.each do |image_comment|%>
 				<div class="comment">
 					<%= image_comment.comment %>(<i><%= image_comment.user.email %></i>)
-					<% if current_user.id == image_comment.user_id || current_user.id == image.user.id %>
+					<% if current_user.id == image_comment.user_id %>
 						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
 						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 					<% end %>
 				</div>
 			<% end %>
 		</div>
+
+    <div id="image-like-<%= @image.id %>">
+    <%= render "likes/like_form", image: @image %>
+    </div>
+
 		<div class="comment-form">
 			<%=form_for(@image_comment) do |f| %>
 			<div class="field">
