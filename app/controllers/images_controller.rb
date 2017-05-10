@@ -31,7 +31,7 @@ class ImagesController < ApplicationController
     @image.user_id = current_user.id
     respond_to do |format|
       if @image.save
-        format.html { redirect_to user_path(current_user), notice: 'Image was successfully created.' }
+        format.html { redirect_to @image, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }

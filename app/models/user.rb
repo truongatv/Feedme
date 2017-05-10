@@ -34,6 +34,6 @@ class User < ApplicationRecord
   end
   
   def liked? image
-    likes.find_by image_id: image.id
+    Like.where("image_id = #{image.id}")
   end
 end
