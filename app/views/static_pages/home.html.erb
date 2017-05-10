@@ -1,6 +1,57 @@
 <div class="center">
   <% if user_signed_in? %>
-  ...
+    <% current_user.following.each do |following| %>
+      <% following.images.each do |ef| %>
+            <div class="post" style="background: darkslategray">
+              <div class="post-info">	
+            		<div class="avatar">
+                  <% if following.avatar.url != nil %>
+            			<%= image_tag(following.avatar.url) %>
+                  <% end %>
+            		</div>
+            		<div class="user-email">
+            			<%= following.email %> posted an image
+            		</div>
+            		<div class="time-stamp">
+            			<%= time_ago_in_words(ef.created_at) %> ago
+            		</div>
+            	</div>
+            	<div class="image">
+            		<%= image_tag(ef.file.url) %>
+            	</div>
+            	<div class="comments-path">
+            		<div class="comments-list">
+            			<% ef.image_comment.each do |image_comment|%>
+            				<div class="comment">
+            					<%= image_comment.comment %>(<i><%= image_comment.user.email %></i>)
+            					<% if current_user.id == image_comment.user_id %>
+            						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
+            						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            					<% end %>
+            				</div>
+            			<% end %>
+            		</div>
+            
+                <div id="image-like-<%= ef.id %>">
+                <%= render "likes/like_form", image:ef %>
+                </div>
+            
+            		<div class="comment-form">
+            			<%=form_for(@image_comment) do |f| %>
+            			<div class="field">
+            				<%= f.label :comment %><br>
+            				<%= f.text_field :comment %>
+            				<%= f.hidden_field :image_id, :value => ef.id %>
+            			</div>
+            				<div class="actions">
+            					<%= f.submit %>
+            				</div>
+            			<% end %>		
+            		</div>
+            	</div>
+            </div>
+      <% end %>
+    <% end %>
   <% else %>
   <h1>Welcome to Feedme Community</h1>
 
