@@ -22,36 +22,12 @@
 	<div class="comments-path">
 		<div class="comments-list">
 			<% @image.image_comment.each do |image_comment|%>
-				<div class="comment">
-					<b class="user-avatar">
-						<%= image_tag(image_comment.user.avatar.url) %>
-					</b>
-					<div class="content">
-						<%= image_comment.comment %>
-					</div>
-					<div class="config">
-						<% if current_user.id == image_comment.user_id %>
-							<%= link_to edit_image_comment_path(image_comment) do %>
-								<i class="fa fa-pencil" aria-hidden="true" style="margin-right: 5px;"></i>
-							<% end %> 
-							<%= link_to image_comment, method: :delete, data: { confirm: 'Are you sure?' } do %>
-								<i class="fa fa-times" aria-hidden="true"></i>											
-							<% end %>
-						<% end %>
-					</div>
-				</div>
+				<%= render "image_comments/single_comment", image_comment: image_comment%>
 			<% end %>
 		</div>
 		<div id="image-like-<%= @image.id %>" class="like-form">
 			<%= render "likes/like_form", image: @image %>
 		</div>
-		<div class="comment-form">
-			<%=form_for(@image_comment) do |f| %>
-				<div class="field">
-					<%= f.text_field :comment, class: "comment-text-field", placeholder: "Say something" %>
-					<%= f.hidden_field :image_id, :value => @image.id %>
-				</div>
-			<% end %>		
-		</div>
+		<%= render 'shared/comment_form', image: @image %>
 	</div>
 </div>

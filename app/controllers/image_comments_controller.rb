@@ -24,18 +24,12 @@ class ImageCommentsController < ApplicationController
   # POST /image_comments
   # POST /image_comments.json
   def create
-    @image_comment = ImageComment.new(image_comment_params)
-    @image_comment.user_id = current_user.id
-
+    @user = current_user
+    @image_comment = @user.image_comments.new(image_comment_params)
     respond_to do |format|
       if @image_comment.save
-        url = "/images/" + @image_comment.image_id.to_s
-        format.html { redirect_to url, notice: 'Image comment was successfully created.' }
-        # format.html { redirect_to @image_comment, notice: 'Image comment was successfully created.' }
-        format.json { render :show, status: :created, location: @image_comment }
-      else
-        format.html { render :new }
-        format.json { render json: @image_comment.errors, status: :unprocessable_entity }
+        format.html {redirect_to :back}
+        format.js
       end
     end
   end
@@ -61,8 +55,9 @@ class ImageCommentsController < ApplicationController
     @image_comment.destroy
     url = "/images/" + @image_comment.image_id.to_s
     respond_to do |format|
-      format.html { redirect_to url, notice: 'Image comment was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Image comment was successfully destroyed.' }
       format.json { head :no_content }
+      # format.js
     end
   end
 

@@ -1,0 +1,18 @@
+<div class="comment">
+	<b class="user-avatar">
+		<%= image_tag(image_comment.user.avatar.url) %>
+	</b>
+	<div class="content">
+		<%= image_comment.comment %>
+	</div>
+	<div class="config">
+		<% if current_user.id == image_comment.user_id %>
+			<%= link_to edit_image_comment_path(image_comment) do %>
+				<i class="fa fa-pencil" aria-hidden="true" style="margin-right: 5px;"></i>
+			<% end %> 
+			<%= link_to image_comment, method: :delete, data: { confirm: 'Are you sure?' } do %>
+				<i class="fa fa-times" aria-hidden="true"></i>											
+			<% end %>
+		<% end %>
+	</div>
+</div>
