@@ -24,6 +24,12 @@
 		text-align: left;
 }
 
+*{
+	&:focus{
+		outline: none;
+	}
+}
+
 html{
 		background: transparent;
 		border: 0;
@@ -45,7 +51,7 @@ body{
 		@include authenticate_section;
 	}
 	.navbar{
-		background: #1d2152;
+		background: #2d348a;
 		border: none;
 	}
 }
@@ -131,30 +137,6 @@ p {
 	color: #fff;
 }
 
-/* footer */
-
-footer {
-	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid #eaeaea;
-	color: #fff;
-}
-
-footer a, footer a:hover, footer a:visited {
-	color: #fff;
-}
-
-footer ul {
-	float: right;
-	list-style: none;
-}
-
-footer ul li {
-	float: left;
-	margin-left: 15px;
-}
-
-
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -195,12 +177,6 @@ header.navbar.navbar-fixed-top.navbar-inverse{
 	display: block;
 }
 
-footer.navbar.navbar-fixed-bottom.navbar-inverse{
-	width: 100%;
-	margin: 0 0;
-	background-color: #1d2152;
-}
-
 div.container.main-content{
 	padding-bottom: 45px;
 }
@@ -219,6 +195,7 @@ div.container.main-content{
 	border-radius: 5px;
 	box-shadow: 0 1px 0 1px #d0d0d0;
 	display: inline-block;
+	background-color: #fafafa;
 	.post-info{
 		width: 100%;
 		padding: 10px 10px;
@@ -228,11 +205,12 @@ div.container.main-content{
 			float: left;
 			margin-left: 20px;
 			margin-top: 20px;
+			color: black;
 		}
 		.time-stamp{
 			display: inline-block;
 			float: right;
-			color: #c5c5c5;
+			color: black;
 			margin-top: 20px;
 		}
 		.avatar{
@@ -253,6 +231,72 @@ div.container.main-content{
 			display: inline-block;
 		}
 	}
+	.like-statis{
+		float: left;
+		font-weight: bold;
+		width: 100%;
+		display: inline-block;
+		padding: 15px 20px 5px 20px;
+		text-align: left;
+	}
+	.comments-path{
+		padding: 10px 10px;
+		.comments-list{
+			.comment{
+				display: inline-block;
+				width: 100%;
+				padding: 5px 5px;
+				.user-avatar{
+					float: left;
+					margin-right: 10px;
+					img{
+						border-radius: 50%;
+						width: 40px;
+						height: 40px;
+					}
+				}
+				.content{
+					float: left;
+				}
+				.config{
+					float: right;
+				}
+			}
+		}
+		.like-form{
+			width: 30px;
+			text-align: left;
+			float: left;
+			background-color: white;
+			padding-bottom: 10px;
+			padding-left: 5px;
+			button{
+				border: none;
+				background-color: transparent;
+			}
+		}
+		.comment-form{
+			float: left;
+			width: calc(100% - 30px);
+			display: inline-block;
+			background-color: white;
+			margin-bottom: 10px;
+			form{
+				width: 100%;
+				margin: 5px 0 10px 10px;
+				.field{
+					margin-bottom: 0;
+					.comment-text-field{
+						border: none;
+						width: 100%;
+						padding: 5px 5px;
+						background-color: transparent;
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
 }
 
 img.user-avatar{
@@ -267,7 +311,12 @@ img.user-avatar{
 		width: 500px;
 	}
 }
-
+button.btn.btn-default{
+	-webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    margin-right: 8px;
+}
 
 /* Comments CSS */
 /*Comment List styles*/

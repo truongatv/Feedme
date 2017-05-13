@@ -1,64 +1,68 @@
 <div class="center">
-  <% if user_signed_in? %>
-    <% current_user.following.each do |following| %>
-      <% following.images.each do |ef| %>
-            <div class="post" style="background: darkslategray">
-              <div class="post-info">	
-            		<div class="avatar">
-                  <% if following.avatar.url != nil %>
-            			<%= image_tag(following.avatar.url) %>
-                  <% end %>
-            		</div>
-            		<div class="user-email">
-            			<%= following.email %> posted an image
-            		</div>
-            		<div class="time-stamp">
-            			<%= time_ago_in_words(ef.created_at) %> ago
-            		</div>
-            	</div>
-            	<div class="image">
-            		<%= image_tag(ef.file.url) %>
-            	</div>
-            	<div class="comments-path">
-            		<div class="comments-list">
-            			<% ef.image_comment.each do |image_comment|%>
-            				<div class="comment">
-            					<%= image_comment.comment %>(<i><%= image_comment.user.email %></i>)
-            					<% if current_user.id == image_comment.user_id %>
-            						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
-            						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-            					<% end %>
-            				</div>
-            			<% end %>
-            		</div>
-            
-                <div id="image-like-<%= ef.id %>">
-                <%= render "likes/like_form", image:ef %>
-                </div>
-            
-            		<div class="comment-form">
-            			<%=form_for(@image_comment) do |f| %>
-            			<div class="field">
-            				<%= f.label :comment %><br>
-            				<%= f.text_field :comment %>
-            				<%= f.hidden_field :image_id, :value => ef.id %>
-            			</div>
-            				<div class="actions">
-            					<%= f.submit %>
-            				</div>
-            			<% end %>		
-            		</div>
-            	</div>
-            </div>
-      <% end %>
-    <% end %>
-  <% else %>
-  <h1>Welcome to Feedme Community</h1>
-
-  <h2>
-    Your first time?
-  </h2>
-
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
-  <% end %>
+	<% if user_signed_in? %>
+		<% current_user.following.each do |following| %>
+			<% following.images.each do |ef| %>
+				<div class="post">
+					<div class="post-info">	
+						<div class="avatar">
+							<% if following.avatar.url != nil %>
+								<%= image_tag(following.avatar.url) %>
+							<% end %>
+						</div>
+						<div class="user-email">
+							<%= following.email %> posted an image
+						</div>
+						<div class="time-stamp">
+							<%= time_ago_in_words(ef.created_at) %> ago
+						</div>
+					</div>
+					<div class="image">
+						<%= image_tag(ef.file.url) %>
+					</div>
+					<div class="like-statis" id="image-like-statis-<%= ef.id %>">
+						<%= pluralize(ef.likes.size, "like") %>
+					</div>
+					<div class="comments-path">
+						<div class="comments-list">
+							<% ef.image_comment.each do |image_comment|%>
+								<div class="comment">
+									<b class="user-avatar">
+										<%= image_tag(image_comment.user.avatar.url) %>
+									</b>
+									<div class="content">
+										<%= image_comment.comment %>
+									</div>
+									<div class="config">
+										<% if current_user.id == image_comment.user_id %>
+											<%= link_to edit_image_comment_path(image_comment) do %>
+												<i class="fa fa-pencil" aria-hidden="true" style="margin-right: 5px;"></i>
+											<% end %> 
+											<%= link_to image_comment, method: :delete, data: { confirm: 'Are you sure?' } do %>
+												<i class="fa fa-times" aria-hidden="true"></i>											
+											<% end %>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</div>
+						<div id="image-like-<%= ef.id %>" class="like-form">
+							<%= render "likes/like_form", image: ef %>
+						</div>
+						<div class="comment-form">
+							<%=form_for(@image_comment) do |f| %>
+								<div class="field">
+									<%= f.text_field :comment, class: "comment-text-field", placeholder: "Say something" %>
+									<%= f.hidden_field :image_id, :value => ef.id %>
+								</div>
+							<% end %>		
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	<% else %>
+		<h1>Welcome to Feedme Community</h1>
+		<h2>Your first time?</h2>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+	<% end %>
 </div>
