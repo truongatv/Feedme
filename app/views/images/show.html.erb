@@ -21,32 +21,61 @@
 		<%= link_to 'Edit', edit_image_path(@image) %>
 	<% end %>
 	</div>
-	<div class="comments-path">
+	<br>
+	<div id="image-like-<%= @image.id %>">
+    <%= render "likes/like_form", image: @image %>
+    </div>
+	<hr>
+	
 		<div class="comments-list">
 			<% @image.image_comment.each do |image_comment|%>
 				<div class="comment">
 					<i style="margin-right: 10px"><%= image_tag image_comment.user.avatar , :height => '50', :width => '50', class: "user-avatar"  %></i><%= image_comment.comment %>
+					<article class="row">
+					<div class="col-md-2 col-sm-2 hidden-xs">
+						<figure class="thumbnail">
+						<%= image_tag image_comment.user.avatar, :height => '50', :width => '50', class: "user-avatar img-responsive" %>
+						<figcaption class="text-center">Member</figcaption>
+						</figure>
+					</div>
+					
+					<div class="col-md-10 col-sm-10">
+					<div class="panel panel-default arrow left">
+					<div class="panel-body">
+					<header class="text-left">
+					<div class="comment-user"><i class="fa fa-user"></i> <i><%= image_comment.user.email %></i></div>
+					
+					</header>
+					
+					<div class="comment-post">
+					<p style="text-align: left;">
+					  <%= image_comment.comment %>
+					</p>
+					</div>
 					<% if current_user.id == image_comment.user_id %>
+						<p class="text-right">
 						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
 						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+						</p>
 					<% end %>
+					
+					</div>
+					</div>
+					</div>
+					
+					
 				</div>
 			<% end %>
 		</div>
-
-    <div id="image-like-<%= @image.id %>">
-    <%= render "likes/like_form", image: @image %>
-    </div>
-
+		
 		<div class="comment-form">
-			<%=form_for(@image_comment) do |f| %>
-			<div class="field">
-				<%= f.label :comment %><br>
-				<%= f.text_field :comment %>
+			<%=form_for(@image_comment, html: {class: "form-inline"}) do |f| %>
+			<div class="field form-group">
+				<%= f.text_field :comment, placeholder: "Write your comments", class: "form-control" %>
 				<%= f.hidden_field :image_id, :value => @image.id %>
 			</div>
-				<div class="actions">
-					<%= f.submit %>
+				<div class="actions form-group">
+					<%= f.submit "Send", :class => "btn btn-default" %>
 				</div>
 			<% end %>		
 		</div>
