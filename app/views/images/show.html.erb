@@ -25,7 +25,7 @@
 		<div class="comments-list">
 			<% @image.image_comment.each do |image_comment|%>
 				<div class="comment">
-					<%= image_comment.comment %>(<i><%= image_tag image_comment.user.avatar %></i>)
+					<i style="margin-right: 10px"><%= image_tag image_comment.user.avatar , :height => '50', :width => '50', class: "user-avatar"  %></i><%= image_comment.comment %>
 					<% if current_user.id == image_comment.user_id %>
 						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
 						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>

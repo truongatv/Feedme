@@ -1,6 +1,6 @@
 <%= form_for [image, like], remote: true, method: :delete do |f| %>
 <p><%= image.likes.size %></p>
-  <%= button_tag type: 'submit' do %>
-        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-    <% end %>
+  	<%= button_tag type: 'submit' do %>
+		<i class="fa fa-heart" aria-hidden="true"></i>    
+	<% end %>
 <% end %>
