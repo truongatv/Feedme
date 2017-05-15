@@ -395,3 +395,7 @@ button.btn.btn-default{
 .comment-list .comment-post {
   margin-top: 6px;
 }
+
+#result-box{display: none; max-height: 300px; overflow-y: auto; overflow-x: hidden; position: absolute; background-color: #fff; border: 1px solid #d083cf; border-top: 0; width: 199px; max-height: 300px; line-height: 2em; font-size: 14px;}
+#result-box > a {color: black; display: block;}
+#result-box > a:hover {color: black; background-color: #ccc;}

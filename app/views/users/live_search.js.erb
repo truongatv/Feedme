@@ -1,0 +1,6 @@
+$("#result-box").html('');
+$("#result-box").css('display', 'block');
+<% @users.each do |user| %>
+	$('#result-box').append('<%= link_to(user.email, user)%>');
+	console.log('<%= user.email %>');
+<% end%>

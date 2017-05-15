@@ -2,8 +2,9 @@
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="container">
 			<%= link_to "Feed me", root_path, id: "logo" %>
-			<%= form_tag users_path, method: "get" do %>
-				<%= text_field_tag :search, params[:search], class: "search-box" ,placeholder: "Search" %>
+			<%= form_tag users_path, method: "get", id: "search-form" do %>
+				<%= text_field_tag :search, params[:search], class: "search-box" ,placeholder: "Search", autocomplete: "off" %>
+				<div id="result-box"></div>
 			<% end %>
 			<nav>
 				<ul class="nav navbar-nav navbar-right">
@@ -19,3 +20,20 @@
 		</div>
 	</div>
 </header>
+
+<script>
+  $(".search-box").bind("keyup", function() {
+    var q = $(".search-box").val();
+    var option = $('#option').find(":selected").val();
+    if(q) {
+      var form = $("#search-form"); // grab the form wrapping the search bar.
+      var url = "/live_search"; // live_search action.   
+      var formData = form.serialize(); // grab the data in the form
+      console.log(q);
+      $.get(url, formData, function(response) { // perform an AJAX get
+      }); 
+    } else {
+      $("#result-box").css("display", "none");
+    }
+  });
+</script>
