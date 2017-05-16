@@ -23,7 +23,7 @@
 						<%= pluralize(ef.likes.size, "like") %>
 					</div>
 					<div class="comments-path">
-						<div class="comments-list">
+						<div class="comments-list" id="<%= ef.id%>">
 							<% ef.image_comment.each do |image_comment|%>
 								<%= render "image_comments/single_comment", image_comment: image_comment%>
 							<% end %>

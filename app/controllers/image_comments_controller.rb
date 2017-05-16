@@ -61,6 +61,17 @@ class ImageCommentsController < ApplicationController
     end
   end
 
+  def live_update
+    @old_comment = ImageComment.find(params[:id]).dup
+    @old_comment.id = params[:id]
+    @image_comment = ImageComment.find(params[:id])
+    @image_comment.destroy
+    respond_to do |format|
+      format.html { redirect_to :back}
+      format.js
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image_comment

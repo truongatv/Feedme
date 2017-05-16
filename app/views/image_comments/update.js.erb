@@ -1,0 +1,3 @@
+// $(".comments-list").
+$(".comments-list").append("<%= escape_javascript(render('single_comment', image_comment: @image_comment)) %>");
+$(".comment-text-field").val('').focus(false);
