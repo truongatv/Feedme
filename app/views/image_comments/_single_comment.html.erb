@@ -1,6 +1,10 @@
 <div class="comment">
 	<b class="user-avatar">
+	<% if image_comment.user.avatar.url != nil%>
 		<%= image_tag(image_comment.user.avatar.url) %>
+		<%else%>
+		<%=current_user.email%>
+		<%end%>
 	</b>
 	<div class="content">
 		<%= image_comment.comment %>
