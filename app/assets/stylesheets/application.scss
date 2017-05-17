@@ -12,7 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
