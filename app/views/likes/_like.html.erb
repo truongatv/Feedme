@@ -1,4 +1,5 @@
 <%= form_for image, url: image_likes_path(image), remote: true, method: :post do |f| %>
-<p><%= image.likes.size %></p>
-  <%= f.submit "Like" %>
+	<%= button_tag type: 'submit' do %>
+        <i class="fa fa-heart-o" aria-hidden="true" style="color:red"></i>       
+	<% end %>
 <% end %>

@@ -1,26 +1,39 @@
 <header>
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<%= link_to "Feed me", root_path, id: "logo" %>
+			<%= form_tag users_path, method: "get", id: "search-form" do %>
+				<%= text_field_tag :search, params[:search], class: "search-box" ,placeholder: "Search", autocomplete: "off" %>
+				<div id="result-box"></div>
+			<% end %>
+			<nav>
+				<ul class="nav navbar-nav navbar-right">
+					<% if user_signed_in? %>
+						<li><%= link_to "My Profile", current_user %></li>
+						<li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+					<% else %>
+						<li><%= link_to "Sign up", new_user_registration_path %></li>
+						<li><%= link_to "Log in", new_user_session_path %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</div>
+	</div>
 </header>
-  <% if current_page?('/') %>
-  <style>.footer,a#logo,.navbar.navbar-fixed-top.navbar-inverse,.footer.navbar.navbar-fixed-bottom.navbar-inverse,div#sidebar.col-sm-3{background-color:transparent}a:hover,.navbar-inverse .navbar-nav > li > a,p,body{color:#fbfbfb!important}a,a:visited{color:#e6f0ff!important}body{background:url(https://i.imgur.com/nGS49mC.jpg) no-repeat center center fixed;background-repeat:no-repeat!important;background-attachment:fixed!important;background-position:center!important;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-color:grey;background-size:cover;background-blend-mode:multiply}</style>
-  <% end %>
-  <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "Feed me", root_path, id: "logo" %>
-        <%= form_tag users_path, method: "get" do %>
-            <%= text_field_tag :search, params[:search], class: "search-box" ,placeholder: "Search" %>
-          <% end %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-            <li><%= link_to "My Profile", current_user %></li>
-            <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-            <li><%= link_to "Log in", new_user_session_path %></li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-</div>
 
-<div class="container-fluid">
+<script>
+  $(".search-box").bind("keyup", function() {
+    var q = $(".search-box").val();
+    var option = $('#option').find(":selected").val();
+    if(q) {
+      var form = $("#search-form"); // grab the form wrapping the search bar.
+      var url = "/live_search"; // live_search action.   
+      var formData = form.serialize(); // grab the data in the form
+      console.log(q);
+      $.get(url, formData, function(response) { // perform an AJAX get
+      }); 
+    } else {
+      $("#result-box").css("display", "none");
+    }
+  });
+</script>

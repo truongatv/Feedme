@@ -1,0 +1,8 @@
+<div class="comment-form">
+	<%=form_for(@image_comment, remote: true) do |f| %>
+		<div class="field">
+			<%= f.text_field :comment, class: "comment-text-field", id: image.id, placeholder: "Say something"%>
+			<%= f.hidden_field :image_id, :value => image.id %>
+		</div>
+	<% end %>		
+</div>

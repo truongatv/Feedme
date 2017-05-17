@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	mount_uploader :avatar, ImageUploader
   has_many :images
   has_many :likes
+  has_many :image_comments
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
                                    dependent:   :destroy
@@ -34,6 +35,6 @@ class User < ApplicationRecord
   end
   
   def liked? image
-    Like.where("image_id = #{image.id}")
+    likes.find_by image_id: image.id
   end
 end

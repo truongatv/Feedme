@@ -1,1 +1,2 @@
 $('#image-like-<%= @image.id %>').html('<%= j render "likes/like", image: @image %>');
+$('#image-like-statis-<%= @image.id %>').html('<%= pluralize(@image.likes.size, "like") %>');

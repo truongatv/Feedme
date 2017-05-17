@@ -1,0 +1,5 @@
+console.log("<%= @old_comment.id%>" +" "+ "<%= @old_comment.comment%>");
+$(".comment#<%= @old_comment.id%>").remove();
+$("input#<%= @old_comment.image.id%>.comment-text-field").val("<%= @old_comment.comment%>");
+// $('input[type=text].comment-text-field#<%= @old_comment.image.id%>').val("");
+

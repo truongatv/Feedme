@@ -1,0 +1,22 @@
+<div class="comment" id="<%= image_comment.id%>">
+	<b class="user-avatar">
+	<% if image_comment.user.avatar.url != nil%>
+		<%= image_tag(image_comment.user.avatar.url) %>
+		<%else%>
+		<%=current_user.email%>
+		<%end%>
+	</b>
+	<div class="content">
+		<%= image_comment.comment %>
+	</div>
+	<div class="config">
+		<% if current_user.id == image_comment.user_id %>
+			<%= link_to live_update_image_comment_path(image_comment), remote: true do %>
+				<i class="fa fa-pencil" aria-hidden="true" style="margin-right: 5px;"></i>
+			<% end %> 
+			<%= link_to image_comment, method: :delete, data: { confirm: 'Are you sure?' } do %>
+				<i class="fa fa-times" aria-hidden="true"></i>											
+			<% end %>
+		<% end %>
+	</div>
+</div>

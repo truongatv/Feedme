@@ -80,6 +80,17 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def live_search
+    if(params[:search])
+      @users = User.where("lower(email) LIKE ?", '%' + params[:search].downcase + '%')
+    end
+    respond_to do |format|
+      if @users
+        format.js
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

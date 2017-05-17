@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :image_comments
+  
+  resources :image_comments do
+    member do
+      get :live_update
+    end
+  end
   get 'static_pages/home'
 
   resources :images do
@@ -18,6 +23,8 @@ Rails.application.routes.draw do
   		get :following, :followers
   	end
   end
+
+  get 'live_search' => 'users#live_search'
 
   resources :relationships, only: [:create, :destroy]
 

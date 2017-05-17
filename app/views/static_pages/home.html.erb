@@ -1,13 +1,44 @@
 <div class="center">
-  <% if user_signed_in? %>
-  ...
-  <% else %>
-  <h1>Welcome to Feedme Community</h1>
-
-  <h2>
-    Your first time?
-  </h2>
-
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
-  <% end %>
+	<% if user_signed_in? %>
+		<% current_user.following.each do |following| %>
+			<% following.images.each do |ef| %>
+				<div class="post">
+					<div class="post-info">	
+						<div class="avatar">
+							<% if following.avatar.url != nil %>
+								<%= image_tag(following.avatar.url) %>
+							<% end %>
+						</div>
+						<div class="user-email">
+							<%= following.email %> posted an image
+						</div>
+						<div class="time-stamp">
+							<%= time_ago_in_words(ef.created_at) %> ago
+						</div>
+					</div>
+					<div class="image">
+						<%= image_tag(ef.file.url) %>
+					</div>
+					<div class="like-statis" id="image-like-statis-<%= ef.id %>">
+						<%= pluralize(ef.likes.size, "like") %>
+					</div>
+					<div class="comments-path">
+						<div class="comments-list" id="<%= ef.id%>">
+							<% ef.image_comment.each do |image_comment|%>
+								<%= render "image_comments/single_comment", image_comment: image_comment%>
+							<% end %>
+						</div>
+						<div id="image-like-<%= ef.id %>" class="like-form">
+							<%= render "likes/like_form", image: ef %>
+						</div>
+						<%= render 'shared/comment_form', image: ef %>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	<% else %>
+		<h1>Welcome to Feedme Community</h1>
+		<h2>Your first time?</h2>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+	<% end %>
 </div>

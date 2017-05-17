@@ -2,10 +2,12 @@
 <div class="post">
 	<div class="post-info">	
 		<div class="avatar">
-			<%= image_tag(@image.user.avatar.url) %>
+			<% if @image.user.avatar.url != nil %>
+				<%= image_tag(@image.user.avatar.url) %>
+			<% end %>
 		</div>
 		<div class="user-email">
-			<%= @image.user.email %>
+			<%= @image.user.email %> posted an image
 		</div>
 		<div class="time-stamp">
 			<%= time_ago_in_words(@image.created_at) %> ago
@@ -14,34 +16,18 @@
 	<div class="image">
 		<%= image_tag(@image.file.url) %>
 	</div>
-	<div class="edit-link">
-	<% if current_user.id == @image.user_id %>
-		<%= link_to 'Edit', edit_image_path(@image) %>
-	<% end %>
+	<div class="like-statis" id="image-like-statis-<%= @image.id %>">
+		<%= pluralize(@image.likes.size, "like") %>
 	</div>
 	<div class="comments-path">
-		<div class="comments-list">
+		<div class="comments-list" id="<%= @image.id%>">
 			<% @image.image_comment.each do |image_comment|%>
-				<div class="comment">
-					<%= image_comment.comment %>(<i><%= image_comment.user.email %></i>)
-					<% if current_user.id == image_comment.user_id || current_user.id == image.user.id %>
-						<%= link_to 'Edit', edit_image_comment_path(image_comment) %> 
-						<%= link_to 'Destroy', image_comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-					<% end %>
-				</div>
+				<%= render "image_comments/single_comment", image_comment: image_comment%>
 			<% end %>
 		</div>
-		<div class="comment-form">
-			<%=form_for(@image_comment) do |f| %>
-			<div class="field">
-				<%= f.label :comment %><br>
-				<%= f.text_field :comment %>
-				<%= f.hidden_field :image_id, :value => @image.id %>
-			</div>
-				<div class="actions">
-					<%= f.submit %>
-				</div>
-			<% end %>		
+		<div id="image-like-<%= @image.id %>" class="like-form">
+			<%= render "likes/like_form", image: @image %>
 		</div>
+		<%= render 'shared/comment_form', image: @image %>
 	</div>
 </div>

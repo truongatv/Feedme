@@ -12,7 +12,8 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to 'Show', user %></td>
+        <td style="padding-right: 10px"><%= link_to 'Show', user %></td>
+        <td style="padding-right: 10px"><%= image_tag user.avatar , :height => '50', :width => '50', class: "user-avatar" %></td>
         <td><%= user.email %></td>
       </tr>
     <% end %>
